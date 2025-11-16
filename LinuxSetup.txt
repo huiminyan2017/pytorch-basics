@@ -1,3 +1,7 @@
+Caveats:
+	•	Colab: limited Python version control and prebuilt packages. You can install d2l via pip install d2l, but it may not always match the notebook’s exact version, and switching Python can break GPU support.
+	•	Codespaces: CPU-only, no GPU, so heavy training like train_ch13 will be very slow.
+
 1. Check OS version
 Inside a GitHub Codespace, the OS is always Linux, but you can check the exact distro and version with:
 
