@@ -22,32 +22,42 @@ LOGO=ubuntu-logo
 @huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ ls /usr/bin/python*
 /usr/bin/python3  /usr/bin/python3-config  /usr/bin/python3.12  /usr/bin/python3.12-config
 
-3. Prepare to install python3.9(for d2l compatable)
-Add the deadsnakes PPA (gives you python 3.9):
+3. Prepare to install python3.10(for d2l compatable)
+Add the deadsnakes PPA (gives you python 3.10):
 
 sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt update
 
-4. Install Python 3.9 + venv module
-sudo apt install -y python3.9 python3.9-venv
-python3.9 --version
+4. Install Python 3.10 + venv module
+sudo apt install -y python3.10 python3.10-venv
+python3.10 --version
 
-5. Create a venv using Python 3.9
-python3.9 -m venv .venv39
-source .venv39/bin/activate
+5. Create a venv using Python 3.10, activate it
+python3.10 -m venv .venv310
+
+source .venv310/bin/activate
 Your promp will change to something like:
-(.venv39) @huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ 
+(.venv310) @huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ 
 
-6. Configure Codespaces Jupyter kernel (if you use notebooks)
-Make sure you already activated to .venv39: source .venv39/bin/activate, so below will be installed in the venv
-pip install ipykernel
-python -m ipykernel install --user --name py39 --display-name "Python 3.9 (Codespace)"
-
-7. Install the Deep Learning Framework and the d2l Package
-Make sure you already activated to .venv39: source .venv39/bin/activate, so below will be installed in the venv
+6. Install d2l + PyTorch (compatible versions)
+Make sure you already activated to .venv310: source .venv310/bin/activate, so below will be installed in the venv
 pip install torch==2.0.0 torchvision==0.15.1
 pip install d2l==1.0.3
 
-8. You can start to run your code in the jupyter notebook, choose venv39 as your kernel.
+7. Register the Jupyter Kernel
+Make sure you already activated to .venv39: source .venv39/bin/activate, so below will be installed in the venv
+pip install ipykernel
+
+python -m ipykernel install --user --name py310 --display-name "Python 3.10 (Codespace)"
+Note: Above command will create a Jupyter kernel spec under your user-level Jupyter directory: ~/.local/share/jupyter/kernels/py310/kernel.json
+So:
+	•	If you run it inside your .venv310 → the kernel points to .venv310/bin/python
+	•	If you run it outside the venv → the kernel points to whichever Python ran the command
+
+Why this matters:
+A Jupyter kernel is just a config file that tells notebooks: “Use THIS python executable when running cells”.
+So the command registers your environment with Jupyter.
+
+8. You can start to run your code in the jupyter notebook, choose venv310 as your kernel.
