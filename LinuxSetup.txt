@@ -1,0 +1,53 @@
+1. Check OS version
+Inside a GitHub Codespace, the OS is always Linux, but you can check the exact distro and version with:
+
+@huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ cat /etc/os-release 
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+@huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ 
+
+
+2. Check python version?
+@huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ ls /usr/bin/python*
+/usr/bin/python3  /usr/bin/python3-config  /usr/bin/python3.12  /usr/bin/python3.12-config
+
+3. Prepare to install python3.9(for d2l compatable)
+Add the deadsnakes PPA (gives you python 3.9):
+
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt update
+
+4. Install Python 3.9 + venv module
+sudo apt install -y python3.9 python3.9-venv
+python3.9 --version
+
+5. Create a venv using Python 3.9
+python3.9 -m venv .venv39
+source .venv39/bin/activate
+Your promp will change to something like:
+(.venv39) @huiminyan2017 ➜ /workspaces/pytorch-basics (main) $ 
+
+6. Configure Codespaces Jupyter kernel (if you use notebooks)
+Make sure you already activated to .venv39: source .venv39/bin/activate, so below will be installed in the venv
+pip install ipykernel
+python -m ipykernel install --user --name py39 --display-name "Python 3.9 (Codespace)"
+
+7. Install the Deep Learning Framework and the d2l Package
+Make sure you already activated to .venv39: source .venv39/bin/activate, so below will be installed in the venv
+pip install torch==2.0.0 torchvision==0.15.1
+pip install d2l==1.0.3
+
+8. You can start to run your code in the jupyter notebook, choose venv39 as your kernel.
